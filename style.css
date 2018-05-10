@@ -1,0 +1,116 @@
+     #map {
+       height: 400px;
+     }
+     
+     .hero-image {
+
+     	background-image: url('background.png'); 
+     	background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 400px; 
+     }
+
+     body {
+			background-color: #f3f3f3;
+			font-family: "Bebas", "arial", "sans-serif"; 
+		}
+
+		.container {
+			background-color: white;
+			/* padding: 50px; */
+			box-shadow: 0 0 10px 2px #cccccc8a;
+		}
+
+
+		.row-inset {
+			padding: 0 50px;
+		}
+
+		.logo {
+			height: 30px;
+			max-width: 100%;
+			
+		}
+
+
+		.flex-column-left {
+			display: flex;
+			flex-direction: column;
+
+		}
+
+		.flex-column-centered {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+		}
+
+		.event-row {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+
+		.calendar-item {
+			padding: 0 15px 0px 0px;
+		}
+
+		.date-month {
+			font-weight: 500;
+		}
+
+		.date-day {
+			font-size: 34px;
+			font-weight: 500;
+			width: 50px;
+			text-align: center;
+		}
+
+		.event-name {
+			font-weight: 700;
+			font-size: 18px;
+		}
+
+		.event-description {
+		  height: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis; 
+
+		}
+
+		#map {
+			height: 600px;
+			display: flex;
+			flex-wrap: wrap;
+			margin-right: -15px;
+			margin-left: -15px;
+		}
+
+		.details-button {
+			margin-top: 20px;
+		}
+
+		@media (min-width: 768px) {
+			#map {
+				height: 400px;
+			}
+			.title {
+				padding: 60px 80px;
+				font-size: 48px;
+			}
+
+			.calendar-item {
+				padding: 0 30px;
+			}
+
+			.details-button {
+				margin-top: 0px;
+			}
+		}
+
+
+		.nav-link {
+			font-weight: 700; 
+    		text-transform: uppercase;
+		}

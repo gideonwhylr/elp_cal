@@ -1,0 +1,262 @@
+<!-- A demo of Event Calendar Tags -->
+<html>
+  <head>
+    <title>event-calendar-tags</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    
+    <script src="https://assets.sitescdn.net/events/events.js"> </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://elp-module-design.netlify.com/themes/yext.css"> 
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css">
+
+  </head>
+
+  <body>
+  	<div class="container ">
+    
+    
+    <!-- HEADER -->
+
+
+    <div class="row row-inset border-bottom hero-image">
+        <div class="d-flex flex-column justify-content-center mx-auto">
+          <h1 class ="display-1 text-center" style="color: white;"> Yext Events </h1>     
+        </div>
+    </div>
+
+
+
+		<!-- MAP -->
+		<!-- <div id="map" class="border-bottom"></div> -->
+
+
+		<!-- FILTERS -->
+		<div class="row row-inset border-bottom pb-2 mb-2">
+			<div class="col-md-12">
+				<div class="d-flex justify-content-md-between">
+					<div class="d-flex form-inline mt-3">
+						<div class="mb-2 mr-sm-2"><strong>Filter Events: </strong></div>
+						<input type="text" class="form-control mb-2 mr-sm-2 start-date" data-provide="datepicker" id="start-date" placeholder="Events after this date">
+						
+            <!-- Filter by name below  
+            <input type="text" class="form-control mb-2 mr-sm-2 name-filter" id="name-filter" placeholder="Event Name">	
+            -->
+            
+            
+            <input type="text" class="form-control mb-2 mr-sm-2 location-filter " id="location-filter" placeholder="Event Location">
+            
+            
+            
+             <!--  Example of a library for pretty selector - for filter by venue below -->            
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css">
+            
+            
+            <select class="mb-2 mr-sm-2 select-venue">
+                <option value="">All Venues</option>
+                <option value="Grape Provisions">Grape Provisions</option>
+                <option value="Walter E. Washington Convention Center">Walter E. Washington Convention Center</option>
+                <option value="Joyce Kilmer Park">Joyce Kilmer Park</option>
+                <option value="D&T Home Hardware">D&T Home Hardware</option>
+                <option value="Madison Square Park">Madison Square Park</option>
+                <option value="Barracks Road Shopping Center">Barracks Road Shopping Center</option>
+                <option value="Yext HQ">Yext HQ</option>
+                <option value="Yext">Yext</option>
+                <option value="Radiance Skin Care">Radiance Skin Care</option>
+                <option value="Second Ascent Outdoor Goods">Second Ascent Outdoor Goods</option>
+                <option value="Aspirance Federal Credit Union">Aspirance Federal Credit Union</option>
+                <option value="MKX Brewing">MKX Brewing</option>
+            </select>
+            
+            <script>
+          			$('.select-venue').niceSelect();
+        		</script>
+            
+            <!-- SELECT MULTIPLE EXAMPLE --> 
+            
+            
+            <!--
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.3/chosen.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.3/chosen.jquery.min.js"></script>
+            
+            <select class="select-venue" multiple>
+                <option value="The Conrad New York">The Conrad New York</option>
+                <option value="The Joule">The Joule</option>
+             </select>
+             
+             
+            <script>
+          		$('.select-venue').niceSelect();
+        		</script>
+            
+            -->
+            
+            <button type="submit" class="btn btn-primary mb-2 ect-search">Filter</button>
+					</div>
+				</div>
+
+				<!-- RESULTS COUNT -->
+				<div class = "text-primary float-right" id="info-element"> </div>
+			</div>
+
+		</div>
+
+   <!--  <svg class="Header-logo" id="yext-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 661.9 294.18" itemprop="image"><g><g><path class="yext-logo__shape" d="M116.91,242.08c-14.71,38-31.26,52.09-61.29,52.09-17.93,0-30.95-4.29-44-11.34L26,251.12c7.66,4.29,16.09,7,25,7,12,0,19.31-5.21,26.35-21.45L0,50.87H45.35l52.86,137.9,48.11-137.9h44.43Z"></path><path class="yext-logo__shape" d="M285,206.23c20.68,0,35.55-7.81,50.41-22.22l25,22.22c-17.62,21.14-41.83,34.78-76,34.78-53.78,0-95.3-39.07-95.3-96.83,0-53.47,37.69-97.14,90.7-97.14,59.14,0,89,46.42,89,100.36A105.92,105.92,0,0,1,368,159H231.51C236.41,189.38,257.56,206.23,285,206.23ZM326.51,131c-2.76-27.43-19-48.88-47.19-48.88-26,0-44.28,20.07-48.11,48.88Z"></path><path class="yext-logo__shape" d="M612,178.8c0,16.55,8.43,23.14,22.83,23.14a58.06,58.06,0,0,0,26.35-6.28v34.78c-10.57,6-22.52,9.5-38.3,9.5-31.26,0-53.47-13.79-53.47-54.55V0H612V51H661.9V87.64H612V178.8Z"></path><polygon class="yext-logo__shape" points="481.56 144.03 413.84 51.17 367.42 51.17 435.14 144.03 367.42 236.87 413.84 236.87 481.56 144.03"></polygon><polygon class="yext-logo__shape" points="479.42 112.16 492.13 129.47 549.28 51.17 502.86 51.17 468.85 97.75 479.42 112.16"></polygon><polygon class="yext-logo__shape" points="492.13 158.43 479.42 175.89 468.85 190.3 502.86 236.87 549.28 236.87 492.13 158.43"></polygon></g></g></svg> -->
+
+		<!-- RESULTS -->
+		<div id="results">
+		</div>
+    
+    <br>
+    <div class = "row">
+      <button class="mx-auto btn btn-light ect-view-more">View More</button>
+    </div>
+    <br>
+ 
+
+
+	</div>
+
+
+	<!-- TEMPLATES -->
+	 <script id="info-template" type="text/template">
+    	<span>   {{TotalResults}} total results. Page {{Page}} of {{TotalPages}}. </span>
+    </script>
+
+
+	<script id="loading-template" type="text/template">
+      
+      	<div class="mx-auto"> <img src="https://www.yext.com/s/public/images/ajax-loader-lrg.gif"> </div>
+
+    </script>
+
+    <script id="empty-results-template" type="text/template">
+    		<br>
+      		 <p class="text-center lead my-5"> No results found... </p>
+      	<br>
+    </script>
+
+
+    <script id="result-template" type="text/template">
+		<div class="row row-inset">
+			<div class="col-sm-9 event-row d-flex border-bottom border-primary">
+      
+<!--       <div class="col px-0 background-image" style="background-image: url('{{Event.photos.0.url}}'); height: 40px; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+      </div> -->
+      
+      
+				<div class="flex-column-centered calendar-item">
+					<div class="text-primary date-month"><h3>{{formatDate Event.startDateTime month="short"}} </h3></div>
+					<div class="date-day">{{formatDate Event.startDateTime day="numeric"}}</div>
+				</div>
+				<div class="flex-column-left">
+					<div class="event-name">{{Event.name}}</div>
+					<div class="event-description mb-2">{{ Event.description }}</div>
+					<div class="mt-2 "><i class="fa fa-map-marker mr-2 text-primary"></i>{{Event.venueName}} - {{Event.address}} - {{Event.city}}</div>
+				</div>
+			</div>
+			<div class="col-sm-3 event-row border-bottom border-primary">
+				{{#if Event.ticketUrl}} <a href="{{Event.ticketUrl}}" target="_blank" class="btn btn-primary btn-span btn-block details-button">Buy Tickets</a> {{/if}} 
+        {{#if Event.websiteUrl}} <a href="{{Event.websiteUrl}}" target="_blank" class="btn btn-outline-primary btn-span btn-block details-button">View Details</a>{{/if}}
+				<div class="btn-group mt-2 btn-block">
+          <button type="button"
+                  class="btn btn-outline-primary btn-block dropdown-toggle "
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >
+            Add to Calendar
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{GoogleCalendarLink}}" target="_blank">
+              Google
+            </a>
+            <a class="dropdown-item"
+               href="{{IcsLink}}"
+               download="{{Event.name}}-{{formatDate Event.startDateTime}}.ics">
+              Outlook
+            </a>
+            <a class="dropdown-item"
+               href="{{IcsLink}}"
+               download="{{Event.name}}-{{formatDate Event.startDateTime}}.ics">
+              Apple Calendar
+            </a>
+          </div>
+        </div>
+      
+      </div>
+		</div>
+
+	</script>
+
+	<!-- INITIALIZATION -->
+
+	<script>
+  	
+		
+    
+    EventCalendar.Initialize({
+			apiKey: 'f39d5dd684252eea99b83e884608477b',
+			googleMapsApiKey: 'AIzaSyCICxKAgLkMDbiIysb4fOMfz0fKSt9NRyk',
+			map: '#map',
+			resultsTemplate: '#result-template',
+			resultsElement: '#results',
+			loadingTemplate: '#loading-template',
+      noResultsTemplate: '#empty-results-template',
+      infoTemplate: '#info-template',
+      infoElement: '#info-element',
+			resultsPerPage: 9,
+      
+      // Prefilter the page by writing a query against any Live API field
+			  apiFilters : [{"name":{"doesNotContain":["X5", "Test"]}}],
+
+      filters: [
+				EventCalendar.Filters.Date({
+					startDateElement: '.start-date',
+					endDateElement: '.end-date'
+				}),
+				EventCalendar.Filters.LiveApiFilter({
+					element: '.select-venue',
+					query: function(value) {
+						return {
+							venueName: {
+								contains: [value]
+							}
+						}
+					}
+				}),
+				EventCalendar.Filters.Location({
+					element: '.location-filter'
+				}),
+        
+        
+
+
+				EventCalendar.Filters.LiveApiFilter({
+					element: '.name-filter',
+					query: function(value) {
+						return {
+							name: {
+								contains: [value]
+							}
+						}
+					}
+				})
+			]
+		});
+	</script>
+
+  </body>
+</html>
